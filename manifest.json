@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Gemini Summarizer",
+  "version": "1.0.0",
+  "description": "Položka v kontextovém menu pro shrnutí YouTube videa pomocí Gemini.",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://*.youtube.com/*",
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_popup": "summaries.html"
+  }
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <title>Uložená shrnutí – Gemini</title>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #0f172a, #020617);
+      color: #f9fafb;
+      min-width: 420px;
+      max-width: 640px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    #subtitle {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 16px;
+    }
+
+    #summaryList {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 70vh;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .summary-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease,
+        transform 0.08s ease;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .summary-card:hover {
+      border-color: rgba(96, 165, 250, 0.8);
+      background: rgba(15, 23, 42, 0.98);
+      transform: translateY(-1px);
+    }
+
+    .summary-header {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .thumb {
+      width: 80px;
+      height: 45px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: #020617;
+      flex-shrink: 0;
+    }
+
+    .summary-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .summary-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #f9fafb;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .summary-info {
+      font-size: 11px;
+      color: #9ca3af;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .pill {
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .summary-body {
+      font-size: 12px;
+      color: #e5e7eb;
+      margin-top: 4px;
+      display: none;
+      white-space: pre-wrap;
+    }
+
+    .summary-card.expanded .summary-body {
+      display: block;
+    }
+
+    .delete-btn {
+      border: none;
+      background: rgba(239, 68, 68, 0.08);
+      color: #fecaca;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 10px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .delete-btn:hover {
+      background: rgba(239, 68, 68, 0.18);
+    }
+
+    .toggle-icon {
+      font-size: 10px;
+      color: #9ca3af;
+      margin-left: 6px;
+      flex-shrink: 0;
+    }
+
+    .summary-card.expanded .toggle-icon {
+      transform: rotate(90deg);
+    }
+
+    #emptyState {
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    a.video-link {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    a.video-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Uložená shrnutí</h1>
+  <div id="subtitle">Shrnutí z YouTube videí – ukládáno lokálně v tomto prohlížeči.</div>
+  <div id="summaryList"></div>
+  <div id="emptyState" style="display: none;">
+    Zatím tady nic není. Otevři YouTube video, použij kontextové menu
+    <strong>„Summarize with Gemini“</strong> a shrnutí se ti tu objeví.
+  </div>
+
+  <script src="summaries.js"></script>
+</body>
+</html>
